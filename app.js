@@ -87,26 +87,46 @@ const createTransporter = async () => {
     });
   });
 
+  //Testing transporter 
+  
+  //   let transporter = nodemailer.createTransport({
+  //     host: 'smtp.mailtrap.io',
+  //     port: 2525,
+  //     auth: {
+  //        user: '7e632bb334d259',
+  //        pass: 'eaad952e242342'
+  //     }
+  // });
+  
+  //Transporter 1 
+
+  // const transporter = nodemailer.createTransport({
+  //   service: "gmail",
+  //   auth: {
+  //     type: "OAuth2",
+  //     user: process.env.USER,
+  //     accessToken,
+  //     clientId: process.env.CLIENT_ID,
+  //     clientSecret: process.env.CLIENT_SECRET,
+  //     refreshToken: process.env.REFRESH_TOKEN
+  //   }
+  // });
+
+  // Transporter 2
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
-      type: "OAuth2",
-      user: process.env.USER,
-      accessToken,
+      type: 'OAuth2',
+      user:  process.env.USER,
       clientId: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      refreshToken: process.env.REFRESH_TOKEN
-    }
+      refreshToken: process.env.REFRESH_TOKE,
+       accessToken,
+    },
   });
 
-//   let transporter = nodemailer.createTransport({
-//     host: 'smtp.mailtrap.io',
-//     port: 2525,
-//     auth: {
-//        user: '7e632bb334d259',
-//        pass: 'eaad952e242342'
-//     }
-// });
 
 
 
@@ -126,9 +146,9 @@ const sendEmail = async (emailOptions) => {
     })
 };
 
-// sendEmail({
-//   subject: "Reset password link",
-//   html: msg,
-//   to:  "arvinmarvel0114@gmail.com",
-//   from: `Emmijozzy ${process.env.USER}`,
-// });
+sendEmail({
+  subject: "Reset password link",
+  html: msg,
+  to:  "logunsuyi@gmail.com",
+  from: `Emmijozzy ${process.env.USER}`,
+});
